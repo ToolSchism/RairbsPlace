@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rairb's Homepage</title>
+    <style>
+        body {
+            background-color: #0a0a0a;
+            color: #ff6666;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            text-align: center;
+            padding: 2rem;
+            max-width: 800px;
+            width: 100%;
+        }
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            text-shadow: 2px 2px 4px rgba(255, 0, 0, 0.3);
+        }
+        .button-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+        }
+        .button {
+            background-color: #330000;
+            color: #ff6666;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+            text-decoration: none;
+            border-radius: 5px;
+            width: 200px;
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        .button:hover {
+            background-color: #660000;
+            transform: scale(1.05);
+        }
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .panel {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #1a0000;
+            padding: 2rem;
+            border-radius: 10px;
+            z-index: 1001;
+            max-width: 80%;
+            width: 400px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .panel-content {
+            margin-bottom: 1rem;
+        }
+        .take-me-there {
+            background-color: #660000;
+            color: #ff6666;
+            border: none;
+            padding: 0.5rem 1rem;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            border-radius: 5px;
+        }
+        .take-me-there:hover {
+            background-color: #990000;
+        }
+        .close-panel {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            color: #ff6666;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Rairb's Homepage</h1>
+        <div class="button-container">
+            <button class="button" onclick="showPanel('dcm')">DeadCakeMix</button>
+            <button class="button" onclick="showPanel('discord')">Discord Server</button>
+            <button class="button" onclick="showPanel('game')">Rogue of the Waves</button>
+        </div>
+    </div>
+
+    <div class="overlay" id="overlay"></div>
+
+    <div class="panel" id="dcm-panel">
+        <button class="close-panel" onclick="hidePanel('dcm')">×</button>
+        <div class="panel-content">
+            <p>This is my friend DeadCakeMix's site. If you have anything you want done in Javascript you should shoot him a dm. He's pretty cool.</p>
+        </div>
+        <button class="take-me-there" onclick="goToSite('https://deadcakemix.com')">Take me there</button>
+    </div>
+
+    <div class="panel" id="discord-panel">
+        <button class="close-panel" onclick="hidePanel('discord')">×</button>
+        <div class="panel-content">
+            <p>This is my discord server. It's pretty dead but this is where I rant about my games and such... if you wanna play some cool creations from a weirdo, check it out.</p>
+        </div>
+        <button class="take-me-there" onclick="goToSite('https://discord.com/invite/Un4phSJ6Nr')">Take me there</button>
+    </div>
+
+    <div class="panel" id="game-panel">
+        <button class="close-panel" onclick="hidePanel('game')">×</button>
+        <div class="panel-content">
+            <p>Rogue of the Waves is a old JRPG inspired roguelike where your goal is to *survive*. You will face many hard battles, gaining stats, levels, items, and artifacts along the way.</p>
+        </div>
+        <button class="take-me-there" onclick="goToSite('https://toolschism.github.io/Quest/')">Take me there</button>
+    </div>
+
+    <script>
+        function showPanel(panelId) {
+            const panel = document.getElementById(panelId + '-panel');
+            const overlay = document.getElementById('overlay');
+            
+            overlay.style.display = 'block';
+            panel.style.display = 'block';
+            
+            setTimeout(() => {
+                overlay.style.opacity = '1';
+                panel.style.opacity = '1';
+            }, 10);
+        }
+
+        function hidePanel(panelId) {
+            const panel = document.getElementById(panelId + '-panel');
+            const overlay = document.getElementById('overlay');
+            
+            panel.style.opacity = '0';
+            overlay.style.opacity = '0';
+            
+            setTimeout(() => {
+                panel.style.display = 'none';
+                overlay.style.display = 'none';
+            }, 300);
+        }
+
+        function goToSite(url) {
+            window.open(url, '_blank');
+        }
+
+        document.getElementById('overlay').addEventListener('click', function() {
+            document.querySelectorAll('.panel').forEach(function(panel) {
+                panel.style.opacity = '0';
+                setTimeout(() => {
+                    panel.style.display = 'none';
+                }, 300);
+            });
+            this.style.opacity = '0';
+            setTimeout(() => {
+                this.style.display = 'none';
+            }, 300);
+        });
+    </script>
+</body>
+</html>
