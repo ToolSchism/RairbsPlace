@@ -73,39 +73,62 @@
             left: 50%;
             transform: translate(-50%, -50%);
             background-color: #1a0000;
-            padding: 2rem;
+            padding: 1.5rem;
             border-radius: 10px;
             z-index: 1001;
-            max-width: 80%;
-            width: 400px;
+            width: 90%;
+            max-width: 400px;
             opacity: 0;
             transition: opacity 0.3s ease;
+            box-sizing: border-box;
         }
         .panel-content {
             margin-bottom: 1rem;
+            font-size: 0.9rem;
         }
         .take-me-there {
             background-color: #660000;
             color: #ff6666;
             border: none;
             padding: 0.5rem 1rem;
-            font-size: 1rem;
+            font-size: 0.9rem;
             cursor: pointer;
             transition: background-color 0.3s;
             border-radius: 5px;
+            width: 100%;
         }
         .take-me-there:hover {
             background-color: #990000;
         }
         .close-panel {
             position: absolute;
-            top: 10px;
+            top: 5px;
             right: 10px;
             background: none;
             border: none;
             color: #ff6666;
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             cursor: pointer;
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2rem;
+            }
+            .button {
+                width: 180px;
+                height: 50px;
+                font-size: 0.9rem;
+            }
+            .panel {
+                padding: 1rem;
+            }
+            .panel-content {
+                font-size: 0.8rem;
+            }
+            .take-me-there {
+                font-size: 0.8rem;
+            }
         }
     </style>
 </head>
